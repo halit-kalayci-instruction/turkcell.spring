@@ -2,6 +2,7 @@ package com.turkcell.spring.starter.repositories.concretes;
 
 import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.repositories.abstracts.ProductRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
