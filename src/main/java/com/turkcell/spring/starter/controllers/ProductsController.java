@@ -10,14 +10,13 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductsController
 {
+    // Endpoint yönet
     private List<Product> productList = new ArrayList<>();
 
 
     @PostMapping
-    public String add(@RequestBody Product product)
+    public void add(@RequestBody Product product)
     {
-        productList.add(product);
-        return "Ekleme işlemi tamamlandı.";
     }
     @GetMapping
     public List<Product> get() {
