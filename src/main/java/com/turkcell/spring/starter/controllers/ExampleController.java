@@ -31,4 +31,4 @@ public class ExampleController
         return "Get 3";
     }
 }
-// 8:25 pair
+// Entity
