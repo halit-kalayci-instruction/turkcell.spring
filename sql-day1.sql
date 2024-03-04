@@ -79,4 +79,54 @@ Select * from products where unitprice > (  Select avg(unitprice) from products 
 
 Select * from products where unitprice < (  Select avg(unitprice) from products  )
 
+-- DML
 
+-- Insert
+
+
+INSERT INTO products(name, unitprice, stock, category_id) VALUES('Insert Deneme', 500, 50, 2)
+
+INSERT INTO products(name, unitprice, stock) VALUES('Insert Deneme 2', 300, 1)
+
+-- Update
+-- Koşulu unutursak tüm tablo etkilenir!!
+Update products
+SET category_id=4, stock=70
+WHERE id=18
+
+-- Delete
+Delete from products where id=19
+
+----
+
+-- JOIN
+Select * from products 
+INNER JOIN categories ON products.category_id=categories.id --fk pk birleşimini konfigüre
+-- 
+Select products.name,categories.name from products 
+INNER JOIN categories ON products.category_id=categories.id
+--
+Select p.name, c.name, p.unitprice, c.id from products p
+INNER JOIN categories c ON p.category_id=c.id
+--
+Select * from users u
+JOIN carts c ON u.id=c.user_id
+JOIN products_carts pc ON c.id=pc.cart_id
+--
+Select * from carts c
+JOIN products_carts pc on c.id=pc.cart_id
+--
+Select * from carts c
+LEFT JOIN products_carts pc on c.id=pc.cart_id
+WHERE pc.id IS NULL
+--
+Select * from carts c
+RIGHT JOIN products_carts pc on c.id=pc.cart_id
+--
+Select * from carts c
+FULL OUTER JOIN products_carts pc on c.id=pc.cart_id
+--
+-- Group By -> 
+-- 15 adet soru-cevap querysi.
+-- Hangi ürün kaç adet sattı?
+-- Cevap
