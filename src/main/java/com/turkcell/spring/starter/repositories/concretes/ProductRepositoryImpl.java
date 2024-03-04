@@ -21,9 +21,3 @@ public class ProductRepositoryImpl implements ProductRepository
         return productList;
     }
 }
-// 5 adet ana entity
-// gerekli crud işlemleri
-
-// bireysel : Spring IoC , Medium
-
-// 9:00
