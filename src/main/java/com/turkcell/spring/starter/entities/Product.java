@@ -1,43 +1,28 @@
 package com.turkcell.spring.starter.entities;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Table(name="products")
+@Entity
+@Data
 public class Product
 {
-    // Model tanımını yönet
+    @Column(name="id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name="name")
     private String name;
+    @Column(name="unitprice")
     private double unitPrice;
-    private int stock;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name="stock")
+    private long stock;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+    // private int categoryId; => YANLIŞ KULLANIM
+    @ManyToOne()
+    @JoinColumn(name="category_id")
+    private Category category;
 }
 // Event-Driven Development

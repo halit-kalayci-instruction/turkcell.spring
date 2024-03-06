@@ -20,11 +20,11 @@ public class ProductServiceImpl implements ProductService
     public void add(Product product) {
         if(product.getUnitPrice() < 0)
             throw new RuntimeException("Ürün fiyatı 0'dan küçük olamaz.");
-        productRepository.add(product);
+        productRepository.save(product);
     }
 
     @Override
     public List<Product> getAll() {
-        return productRepository.getAll();
+        return productRepository.findAll();
     }
 }

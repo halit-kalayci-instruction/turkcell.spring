@@ -5,7 +5,6 @@ import com.turkcell.spring.starter.repositories.abstracts.CategoryRepository;
 import com.turkcell.spring.starter.services.abstracts.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @AllArgsConstructor

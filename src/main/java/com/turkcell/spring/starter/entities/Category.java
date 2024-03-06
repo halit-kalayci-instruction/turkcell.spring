@@ -1,9 +1,12 @@
 package com.turkcell.spring.starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @Table(name = "categories")
@@ -20,4 +23,8 @@ public class Category
 
     @Column(name="name")
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore // TODO: remove after dto
+    private List<Product> products;
 }
