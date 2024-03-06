@@ -130,3 +130,12 @@ FULL OUTER JOIN products_carts pc on c.id=pc.cart_id
 -- 15 adet soru-cevap querysi.
 -- Hangi ürün kaç adet sattı?
 -- Cevap
+Select * from users
+
+Select unitprice, COUNT(*) from products
+group by unitprice
+
+Select country,city, COUNT(*) from users
+group by country,city
+order by count(*) desc
+
