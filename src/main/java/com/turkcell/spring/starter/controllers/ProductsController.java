@@ -4,6 +4,7 @@ import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
 import com.turkcell.spring.starter.services.concretes.ProductServiceImpl;
 import com.turkcell.spring.starter.services.dtos.product.ProductForAddDto;
+import com.turkcell.spring.starter.services.dtos.product.ProductForListingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class ProductsController
         productService.add(productForAddDto);
     }
     @GetMapping
-    public List<Product> get() {
+    public List<ProductForListingDto> get() {
         return productService.getAll();
     }
 }

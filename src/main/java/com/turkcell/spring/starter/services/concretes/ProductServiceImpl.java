@@ -5,8 +5,10 @@ import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.repositories.abstracts.ProductRepository;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
 import com.turkcell.spring.starter.services.dtos.product.ProductForAddDto;
+import com.turkcell.spring.starter.services.dtos.product.ProductForListingDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,7 +40,20 @@ public class ProductServiceImpl implements ProductService
     }
 
     @Override
-    public List<Product> getAll() {
-        return productRepository.findAll();
+    public List<ProductForListingDto> getAll() {
+        List<Product> products = productRepository.findAll();
+        List<ProductForListingDto> response = new ArrayList<>();
+
+        // Beginner Level List Mapping
+        for (Product product: products) {
+            ProductForListingDto dto = new ProductForListingDto(
+                    product.getId(),
+                    product.getName(),
+                    product.getCategory().getName(),
+                    product.getUnitPrice());
+            response.add(dto);
+        }
+
+        return response;
     }
 }
