@@ -1,14 +1,10 @@
 package com.turkcell.spring.starter.controllers;
 
-import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
-import com.turkcell.spring.starter.services.concretes.ProductServiceImpl;
-import com.turkcell.spring.starter.services.dtos.product.ProductForAddDto;
-import com.turkcell.spring.starter.services.dtos.product.ProductForListingDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.turkcell.spring.starter.services.dtos.product.requests.AddProductRequest;
+import com.turkcell.spring.starter.services.dtos.product.responses.ProductListResponse;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,12 +21,12 @@ public class ProductsController
 
     // DTO => Data Transfer Object
     @PostMapping
-    public void add(@RequestBody ProductForAddDto productForAddDto)
+    public void add(@RequestBody AddProductRequest request)
     {
-        productService.add(productForAddDto);
+        productService.add(request);
     }
     @GetMapping
-    public List<ProductForListingDto> get() {
+    public List<ProductListResponse> get() {
         return productService.getAll();
     }
 }

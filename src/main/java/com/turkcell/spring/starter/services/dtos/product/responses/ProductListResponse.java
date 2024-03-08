@@ -1,4 +1,4 @@
-package com.turkcell.spring.starter.services.dtos.product;
+package com.turkcell.spring.starter.services.dtos.product.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductForListingDto {
+public class ProductListResponse {
     private int id;
     private String name;
     private String categoryName;
