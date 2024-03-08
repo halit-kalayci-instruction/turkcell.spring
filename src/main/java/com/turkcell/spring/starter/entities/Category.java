@@ -25,6 +25,6 @@ public class Category
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @JsonIgnore // TODO: remove after dto
+    @JsonIgnore
     private List<Product> products;
 }

@@ -57,4 +57,14 @@ public class ProductServiceImpl implements ProductService
         // Request - Response (Reply) Pattern
         return response;
     }
+
+    @Override
+    public List<ProductListResponse> search(String query) {
+        return productRepository.searchDto(query);
+    }
+
+    @Override
+    public List<Product> price(double price) {
+        return productRepository.findByUnitPriceGreaterThan(price);
+    }
 }

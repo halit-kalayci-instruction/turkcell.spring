@@ -1,5 +1,6 @@
 package com.turkcell.spring.starter.controllers;
 
+import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
 import com.turkcell.spring.starter.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.spring.starter.services.dtos.product.responses.ProductListResponse;
@@ -28,5 +29,16 @@ public class ProductsController
     @GetMapping
     public List<ProductListResponse> get() {
         return productService.getAll();
+    }
+
+    @GetMapping("search")
+    public List<ProductListResponse> search(@RequestParam String query)
+    {
+        return productService.search(query);
+    }
+    @GetMapping("price")
+    public List<Product> price(@RequestParam double price)
+    {
+        return productService.price(price);
     }
 }
