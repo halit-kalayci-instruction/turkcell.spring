@@ -1,5 +1,6 @@
 package com.turkcell.spring.starter.services.concretes;
 
+import com.turkcell.spring.starter.core.exception.types.BusinessException;
 import com.turkcell.spring.starter.entities.Category;
 import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.repositories.abstracts.ProductRepository;
@@ -21,14 +22,11 @@ public class ProductServiceImpl implements ProductService
         this.productRepository = productRepository;
     }
 
+    // 3:10
     @Override
     public void add(AddProductRequest request) {
         // Aynı ürün isminden 2. ürün eklenemez.
-        Optional<Product> productWithSameName =
-                productRepository.findByName(request.getName());
-        if(productWithSameName.isPresent())
-            throw new RuntimeException("Aynı isimde 2. ürün eklenemez");
-
+        productWithSameNameShouldNotExists(request.getName());
         // TODO: Check from db
         Category category = new Category();
         category.setId(request.getCategoryId());
@@ -70,5 +68,15 @@ public class ProductServiceImpl implements ProductService
     @Override
     public List<Product> price(double price) {
         return productRepository.findByUnitPriceGreaterThan(price);
+    }
+
+    private void productWithSameNameShouldNotExists(String name)
+    {
+        Optional<Product> productWithSameName =
+                productRepository.findByName(name);
+        if(productWithSameName.isPresent())
+            throw new BusinessException("Aynı isimde 2. ürün eklenemez");
+        else
+            throw new IllegalArgumentException("");
     }
 }
