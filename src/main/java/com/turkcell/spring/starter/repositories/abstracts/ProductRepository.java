@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>
 {
@@ -26,5 +27,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
     // Derived Query Methods
     // Oto hazırlanmış method isimlendirmeleri
     List<Product> findByUnitPriceGreaterThan(double unitPrice);
+    Optional<Product> findByName(String name);
 }
-// 8:15

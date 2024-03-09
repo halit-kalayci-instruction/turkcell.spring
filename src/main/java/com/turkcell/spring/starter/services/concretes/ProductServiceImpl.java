@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService
@@ -22,6 +23,12 @@ public class ProductServiceImpl implements ProductService
 
     @Override
     public void add(AddProductRequest request) {
+        // Aynı ürün isminden 2. ürün eklenemez.
+        Optional<Product> productWithSameName =
+                productRepository.findByName(request.getName());
+        if(productWithSameName.isPresent())
+            throw new RuntimeException("Aynı isimde 2. ürün eklenemez");
+
         // TODO: Check from db
         Category category = new Category();
         category.setId(request.getCategoryId());
