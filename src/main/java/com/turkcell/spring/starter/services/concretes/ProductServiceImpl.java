@@ -76,7 +76,6 @@ public class ProductServiceImpl implements ProductService
                 productRepository.findByName(name);
         if(productWithSameName.isPresent())
             throw new BusinessException("Aynı isimde 2. ürün eklenemez");
-        else
-            throw new IllegalArgumentException("");
     }
 }
+// Docker
