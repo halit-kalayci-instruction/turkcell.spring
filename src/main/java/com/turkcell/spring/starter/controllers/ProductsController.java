@@ -4,6 +4,7 @@ import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
 import com.turkcell.spring.starter.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.spring.starter.services.dtos.product.responses.ProductListResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class ProductsController
 
     // DTO => Data Transfer Object
     @PostMapping
-    public void add(@RequestBody AddProductRequest request)
+    public void add(@RequestBody @Valid AddProductRequest request)
     {
         productService.add(request);
     }

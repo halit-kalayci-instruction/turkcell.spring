@@ -22,9 +22,6 @@ public class ProductServiceImpl implements ProductService
 
     @Override
     public void add(AddProductRequest request) {
-        if(request.getUnitPrice() < 0)
-            throw new RuntimeException("Ürün fiyatı 0'dan küçük olamaz.");
-
         // TODO: Check from db
         Category category = new Category();
         category.setId(request.getCategoryId());
