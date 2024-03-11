@@ -9,6 +9,7 @@ import com.turkcell.spring.starter.services.abstracts.ProductService;
 import com.turkcell.spring.starter.services.constants.Messages;
 import com.turkcell.spring.starter.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.spring.starter.services.dtos.product.responses.ProductListResponse;
+import com.turkcell.spring.starter.services.mappers.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,27 +18,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class ProductServiceImpl implements ProductService
 {
     private final ProductRepository productRepository;
     private final MessageService messageService;
 
+    public ProductServiceImpl(ProductRepository productRepository, MessageService messageService) {
+        this.productRepository = productRepository;
+        this.messageService = messageService;
+    }
+
     @Override
     public void add(AddProductRequest request) {
-        // Aynı ürün isminden 2. ürün eklenemez.
         productWithSameNameShouldNotExists(request.getName());
-        // TODO: Check from db
-        Category category = new Category();
-        category.setId(request.getCategoryId());
-
-        // Mapping -> Manual
-        // TODO: Auto Mapping
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setStock(request.getStock());
-        product.setUnitPrice(request.getUnitPrice());
-        product.setCategory(category);
+        Product product = ProductMapper.INSTANCE.productFromAddRequest(request);
         productRepository.save(product);
     }
 

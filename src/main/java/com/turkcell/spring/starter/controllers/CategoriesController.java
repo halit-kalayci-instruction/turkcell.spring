@@ -11,10 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
-@AllArgsConstructor
 public class CategoriesController {
 
     private final CategoryService categoryService;
+
+    public CategoriesController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @GetMapping
     public List<Category> getAll(){
