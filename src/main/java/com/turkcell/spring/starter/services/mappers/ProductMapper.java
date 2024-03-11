@@ -9,9 +9,11 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface ProductMapper
 {
-    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
+    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class); // blueprint
 
     @Mapping(source = "categoryId", target = "category.id")
-    //@Mapping(source = )
     Product productFromAddRequest(AddProductRequest request);
+    // Aynı isime sahip alanlar oto eşlenir.
+    // Farklı isime sahip alanlar configure edilmelidir.
+
 }
