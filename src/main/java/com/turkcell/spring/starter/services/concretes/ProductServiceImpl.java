@@ -1,16 +1,15 @@
 package com.turkcell.spring.starter.services.concretes;
 
 import com.turkcell.spring.starter.core.exception.types.BusinessException;
+import com.turkcell.spring.starter.core.services.abstracts.MessageService;
 import com.turkcell.spring.starter.entities.Category;
 import com.turkcell.spring.starter.entities.Product;
 import com.turkcell.spring.starter.repositories.abstracts.ProductRepository;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
+import com.turkcell.spring.starter.services.constants.Messages;
 import com.turkcell.spring.starter.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.spring.starter.services.dtos.product.responses.ProductListResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService
 {
     private final ProductRepository productRepository;
-    private final MessageSource messageSource;
+    private final MessageService messageService;
 
     @Override
     public void add(AddProductRequest request) {
@@ -76,7 +75,7 @@ public class ProductServiceImpl implements ProductService
         Optional<Product> productWithSameName =
                 productRepository.findByName(name);
         if(productWithSameName.isPresent())
-            throw new BusinessException(messageSource.getMessage("sameProductError",null, LocaleContextHolder.getLocale()));
+            throw new BusinessException(messageService.getMessageWithArgs(Messages.BusinessErrors.SAME_PRODUCT_ERROR, name));
     }
 }
 // Docker
