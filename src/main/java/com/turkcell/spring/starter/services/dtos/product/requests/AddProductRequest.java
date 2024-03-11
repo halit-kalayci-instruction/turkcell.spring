@@ -24,3 +24,4 @@ public class AddProductRequest {
     @Min(1)
     private int categoryId;
 }
+// 8:45
