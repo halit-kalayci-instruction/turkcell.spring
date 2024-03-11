@@ -17,7 +17,7 @@ public class GlobalExceptionHandler
 {
     @ExceptionHandler({BusinessException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleRuntimeException(BusinessException exception)
+    public String handleBusinessException(BusinessException exception)
     {
         return exception.getMessage();
     }

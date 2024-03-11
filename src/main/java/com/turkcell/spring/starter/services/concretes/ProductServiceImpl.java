@@ -7,6 +7,10 @@ import com.turkcell.spring.starter.repositories.abstracts.ProductRepository;
 import com.turkcell.spring.starter.services.abstracts.ProductService;
 import com.turkcell.spring.starter.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.spring.starter.services.dtos.product.responses.ProductListResponse;
+import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,15 +18,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService
 {
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final MessageSource messageSource;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
-    // 3:10
     @Override
     public void add(AddProductRequest request) {
         // Aynı ürün isminden 2. ürün eklenemez.
@@ -75,7 +76,7 @@ public class ProductServiceImpl implements ProductService
         Optional<Product> productWithSameName =
                 productRepository.findByName(name);
         if(productWithSameName.isPresent())
-            throw new BusinessException("Aynı isimde 2. ürün eklenemez");
+            throw new BusinessException(messageSource.getMessage("sameProductError",null, LocaleContextHolder.getLocale()));
     }
 }
 // Docker
