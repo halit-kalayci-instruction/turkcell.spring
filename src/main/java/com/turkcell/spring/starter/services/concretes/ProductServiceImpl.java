@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService
     // 7:00
     @Override
     public List<ProductListResponse> getAll() {
-        List<Product> products = productRepository.findAll();
+       /* List<Product> products = productRepository.findAll();
         List<ProductListResponse> response = new ArrayList<>();
 
         // Beginner Level List Mapping
@@ -51,7 +51,8 @@ public class ProductServiceImpl implements ProductService
             response.add(dto);
         }
         // Request - Response (Reply) Pattern
-        return response;
+        return response;*/
+        return null;
     }
 
     @Override
